@@ -54,3 +54,23 @@ export const fetchUsers = async (token) => {
   return response.data; 
 };
 
+export const getAllMeetingNotes = async (token) =>
+  axios.get(`${API_URL}/meeting-note`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const createMeetingNote = async (content, token) =>
+  axios.post(`${API_URL}/meeting-note`, { content }, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const updateMeetingNoteById = async (noteId, content, token) =>
+  axios.put(`${API_URL}/meeting-note/${noteId}`, { content }, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+export const deleteMeetingNoteById = async (noteId, token) =>
+  axios.delete(`${API_URL}/meeting-note/${noteId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+

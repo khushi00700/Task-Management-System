@@ -16,7 +16,11 @@ const EditTaskPopup = ({ task, onClose, setTasks }) => {
     }
 
     try {
-      const response = await updateTask(task._id, { title, description, priority, deadline }, token);
+      const response = await updateTask(
+        task._id,
+        { title, description, priority, deadline },
+        token
+      );
       setTasks((prevTasks) =>
         // replace old task with updated one
         prevTasks.map((t) => (t._id === task._id ? response.data : t))
@@ -68,7 +72,10 @@ const EditTaskPopup = ({ task, onClose, setTasks }) => {
           <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
             Cancel
           </button>
-          <button onClick={handleUpdateTask} className="px-4 py-2 bg-green-500 text-white rounded">
+          <button
+            onClick={handleUpdateTask}
+            className="px-4 py-2 bg-green-500 text-white rounded"
+          >
             Save
           </button>
         </div>

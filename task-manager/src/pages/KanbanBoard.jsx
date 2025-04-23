@@ -9,6 +9,7 @@ import EditTaskPopup from "../components/EditTaskPopup";
 import TaskFilterTabs from "../components/TaskFilterTabs";
 import TaskCard from "../components/TaskCard";
 import SearchTasks from "../components/SearchTasks";
+import MeetingSpot from "../components/MeetingSpot";
 
 const KanbanBoard = () => {
   const [tasks, setTasks] = useState([]);
@@ -79,17 +80,21 @@ const KanbanBoard = () => {
     return <p>Loading tasks...</p>;
   }
 
+  
+
   return (
     <div className="container mx-auto p-4">
       <Navbar />
+      <MeetingSpot role={role} />
       <TaskOverview tasks={tasks} />
       {role === "admin" && <CreateTask tasks={tasks} setTasks={setTasks} />}
       <SortTasks tasks={tasks} setFilteredTasks={setFilteredTasks} />
-      <TaskFilterTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-
+      <TaskFilterTabs
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab}
+      />
       {/* ✅ Added Search Component */}
       <SearchTasks tasks={tasks} setFilteredTasks={setFilteredTasks} />
-
       <div className="grid grid-cols-3 gap-4 mt-4">
         {filteredTasks.map((task) => (
           <TaskCard
@@ -101,9 +106,12 @@ const KanbanBoard = () => {
           />
         ))}
       </div>
-
       {isEditing && selectedTask && (
-        <EditTaskPopup task={selectedTask} setTasks={setTasks} onClose={handleClosePopup} />
+        <EditTaskPopup
+          task={selectedTask}
+          setTasks={setTasks}
+          onClose={handleClosePopup}
+        />
       )}
     </div>
   );
